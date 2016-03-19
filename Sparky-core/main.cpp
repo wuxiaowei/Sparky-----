@@ -1,6 +1,9 @@
 #include "src/graphics/window.h"
 #include "src/maths/maths.h"
 #include "src/graphics/shader.h"
+#include "src\graphics\buffers\buffer.h"
+#include "src\graphics\buffers\indexBuffer.h"
+#include"src\graphics\buffers\vertexarray.h"
 
 int main(int argc, const char * argv[]) {
 	// insert code here...
@@ -10,8 +13,7 @@ int main(int argc, const char * argv[]) {
 	Window window("Sparky", 960, 540);
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	std::cout << glGetString(GL_VERSION) << std::endl;
-
-
+#if 0
 	GLuint vbo;
 
 	GLfloat vertices[] = {
@@ -27,6 +29,28 @@ int main(int argc, const char * argv[]) {
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
+#else
+	GLfloat vertices[] = {
+		+0, 0, 0,
+		+0, 3, 0,
+
+		+8, 3, 0,
+
+		+8, 0, 0
+	};
+
+	GLushort indices[] = {
+		0,1,2,
+		2,3,0
+	};
+	VertexArray vao;
+	Buffer *vbo = new Buffer(vertices,4*3,3);
+	IndexBuffer ibo(indices, 6);
+	vao.addBuffer(vbo, 0);
+#endif // 0
+
+
+
 
 	mat4 ortho = mat4::orthographic(0.0f,16.0f, 0.0f, 9.0f, -1.0f, 1.0f);
 
@@ -39,10 +63,19 @@ int main(int argc, const char * argv[]) {
 	shader.setUniform2f("light_pos", vec2(8.0, 4.0));
 	while (!window.closed()) {
 		window.clear();
-
+#if 0
 		glDrawArrays(GL_TRIANGLES, 0, 6);
+#else
+		vao.bind();
+		ibo.bind();
+		glDrawElements(GL_TRIANGLES, ibo.getCount(),GL_UNSIGNED_SHORT, 0);
+		ibo.unbind();
+		vao.unbind();
+#endif // 0
+
 
 		window.update();
+
 	}
 
 	//    std::cin.get();

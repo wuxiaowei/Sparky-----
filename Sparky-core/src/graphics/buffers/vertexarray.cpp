@@ -6,7 +6,7 @@ namespace sparky {
 		}
 
 		VertexArray::~VertexArray() {
-			for (int i = 0; i < m_Buffers.size; i++)
+			for (int i = 0; i < m_Buffers.size(); i++)
 				delete m_Buffers[i];
 		}
 
@@ -18,6 +18,14 @@ namespace sparky {
 			buffer->unbind();
 			unbind();
 
+		}
+		
+		void VertexArray::bind() const{
+			glBindVertexArray(m_ArrayID);
+		}
+
+		void VertexArray::unbind() const {
+			glBindVertexArray(0);
 		}
 	}
 }
