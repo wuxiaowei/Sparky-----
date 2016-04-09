@@ -87,6 +87,8 @@
     <ClCompile Include="src\maths\vec3.cpp" />
     <ClCompile Include="src\maths\vec4.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
+    <ClCompile Include="src\graphics\simple2drenderer.cpp" />
+    
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\graphics\buffers\buffer.h" />
@@ -103,6 +105,10 @@
     <ClInclude Include="src\utils\fileutils.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="src\graphics\renderable2d.h" />
+    <None Include="src\graphics\renderer2d.h" />
+    <None Include="src\graphics\simple2drenderer.cpp" />
+    <None Include="src\graphics\simple2drenderer.h" />
     <None Include="src\shaders\basic.frag" />
     <None Include="src\shaders\basic.vert" />
   </ItemGroup>

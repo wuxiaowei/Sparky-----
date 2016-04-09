@@ -87,5 +87,17 @@
   <ItemGroup>
     <None Include="src\shaders\basic.vert" />
     <None Include="src\shaders\basic.frag" />
+    <None Include="src\graphics\renderer2d.h">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="src\graphics\renderable2d.h">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="src\graphics\simple2drenderer.cpp">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="src\graphics\simple2drenderer.h">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
